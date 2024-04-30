@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO</title>
+</head>
+<body>
+    <h1>Functional TODO List</h1>
+    <input type="text" id="todoInput" placeholder="Add a TODO item">
+    <button onclick="addTodo()">Add TODO</button>
+    <ul id="todoList"></ul>
+
+<script>
+    let todos = [];        
+       
+    function addTodo() {
+    const todoInput = document.getElementById("todoInput");
+    const newTodo = todoInput.value;
+        
+        if (newTodo.trim() !== "") {
+             todos.push(newTodo);
+             displayTodoList();
+             todoInput.value = "";
+            } 
+            }    
+        
+        function removeTodo(index) {
+            todos.splice(index, 1);
+            displayTodoList();
+        }
+        
+        function displayTodoList() {
+            const todoList = document.getElementById("todoList");
+            todoList.innerHTML = "";
+        
+            todos.map((todo, index) => {
+                const li = document.createElement("li");
+                li.textContent = todo;
+        
+                const removeBtn = document.createElement("button");
+                removeBtn.textContent = "Remove";
+                removeBtn.onclick = () => removeTodo(index);
+        
+                li.appendChild(removeBtn);
+                todoList.appendChild(li);
+            });
+        }
+</script>
+        </body>
+        </html>
+
+</body>
+</html>
